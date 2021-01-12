@@ -6,6 +6,7 @@ import com.internet.shop.model.Manufacturer;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 @Dao
 public class ManufactureDaoImpl implements ManufactureDao {
@@ -29,9 +30,12 @@ public class ManufactureDaoImpl implements ManufactureDao {
 
     @Override
     public Manufacturer update(Manufacturer manufacturer) {
-        manufacturer.setId(manufacturer.getId());
-        manufacturer.setName(manufacturer.getName());
-        manufacturer.setCountry(manufacturer.getCountry());
+        int oldIndex = IntStream.range(0, Storage.manufacturers.size())
+                .filter(index -> Objects.equals(Storage.manufacturers.get(index).getId(),
+                        manufacturer.getId()))
+                .findFirst()
+                .getAsInt();
+        Storage.manufacturers.set(oldIndex, manufacturer);
         return manufacturer;
     }
 
