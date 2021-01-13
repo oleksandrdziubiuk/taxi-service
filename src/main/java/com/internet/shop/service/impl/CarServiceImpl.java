@@ -25,7 +25,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Car get(Long id) {
-        return carDao.get(id).orElse(null);
+        return carDao.get(id).get();
     }
 
     @Override
@@ -45,9 +45,6 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void addDriverToCar(Driver driver, Car car) {
-        if (!driverDao.getAll().contains(driver)) {
-            driverDao.create(driver);
-        }
         car.getDrivers().add(driver);
         carDao.update(car);
     }
@@ -63,9 +60,7 @@ public class CarServiceImpl implements CarService {
         return carDao.getAll().stream()
                 .filter(c -> c.getDrivers()
                         .stream()
-                        .map(Driver::getId)
-                        .collect(Collectors.toList())
-                        .contains(driverId))
+                        .anyMatch(d -> d.getId().equals(driverId)))
                 .collect(Collectors.toList());
     }
 }
