@@ -8,7 +8,6 @@ import com.internet.shop.model.Car;
 import com.internet.shop.model.Driver;
 import com.internet.shop.service.CarService;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -57,10 +56,6 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<Car> getAllByDriver(Long driverId) {
-        return carDao.getAll().stream()
-                .filter(c -> c.getDrivers()
-                        .stream()
-                        .anyMatch(d -> d.getId().equals(driverId)))
-                .collect(Collectors.toList());
+        return carDao.getAllByDriver(driverId);
     }
 }

@@ -7,6 +7,7 @@ import com.internet.shop.model.Car;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Dao
@@ -40,5 +41,14 @@ public class CarDaoImpl implements CarDao {
     @Override
     public boolean delete(Long id) {
         return Storage.cars.removeIf(c -> c.getId().equals(id));
+    }
+
+    @Override
+    public List<Car> getAllByDriver(Long driverId) {
+        return Storage.cars.stream()
+                .filter(c -> c.getDrivers()
+                        .stream()
+                        .anyMatch(d -> d.getId().equals(driverId)))
+                .collect(Collectors.toList());
     }
 }
