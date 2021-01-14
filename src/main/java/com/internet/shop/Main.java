@@ -1,11 +1,7 @@
 package com.internet.shop;
 
 import com.internet.shop.lib.Injector;
-import com.internet.shop.model.Car;
-import com.internet.shop.model.Driver;
 import com.internet.shop.model.Manufacturer;
-import com.internet.shop.service.CarService;
-import com.internet.shop.service.DriverService;
 import com.internet.shop.service.ManufactureService;
 
 public class Main {
@@ -20,7 +16,5 @@ public class Main {
         System.out.println(manufactureService.delete(26L));
         System.out.println(manufactureService.get(27L));
         System.out.println(manufactureService.getAll());
-
-
     }
 }
