@@ -106,7 +106,7 @@ public class ManufactureJdbc implements ManufactureDao {
             manufacturer.setId(id);
             return manufacturer;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't create manufacturer from DB", e);
+            throw new DataProcessingException("Can't parse manufacturer from ResultSet", e);
         }
     }
 }

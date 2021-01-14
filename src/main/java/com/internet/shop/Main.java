@@ -13,8 +13,8 @@ public class Main {
         System.out.println(manufactureService.getAll());
         Manufacturer manufacturer = new Manufacturer("Opel", "Germany");
         manufactureService.create(manufacturer);
-        System.out.println(manufactureService.delete(26L));
-        System.out.println(manufactureService.get(27L));
+        System.out.println(manufactureService.delete(1L));
+        System.out.println(manufactureService.get(2L));
         System.out.println(manufactureService.getAll());
     }
 }
