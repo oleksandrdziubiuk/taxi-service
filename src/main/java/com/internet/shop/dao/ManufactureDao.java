@@ -4,7 +4,7 @@ import com.internet.shop.model.Manufacturer;
 import java.util.List;
 import java.util.Optional;
 
-public interface ManufactureDao {
+public interface ManufactureDao extends GenericDao<Manufacturer, Long> {
     Manufacturer create(Manufacturer manufacturer);
 
     Optional<Manufacturer> get(Long id);

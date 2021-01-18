@@ -1,7 +1,11 @@
 package com.internet.shop;
 
 import com.internet.shop.lib.Injector;
+import com.internet.shop.model.Car;
+import com.internet.shop.model.Driver;
 import com.internet.shop.model.Manufacturer;
+import com.internet.shop.service.CarService;
+import com.internet.shop.service.DriverService;
 import com.internet.shop.service.ManufactureService;
 
 public class Main {
@@ -16,5 +20,26 @@ public class Main {
         System.out.println(manufactureService.delete(1L));
         System.out.println(manufactureService.get(2L));
         System.out.println(manufactureService.getAll());
+
+        DriverService driverService = (DriverService) injector.getInstance(DriverService.class);
+        Driver driverJohn = new Driver("John", "323");
+        driverService.create(driverJohn);
+        System.out.println(driverService.getAll());
+        driverService.delete(1L);
+
+        CarService carService = (CarService) injector.getInstance(CarService.class);
+        Car car = new Car("aaaa", manufactureService.get(2L));
+        carService.create(car);
+        carService.addDriverToCar(driverService.get(5L), car);
+        System.out.println(carService.getAll());
+        System.out.println(carService.getAllByDriver(1L));
+        carService.removeDriverFromCar(driverJohn, car);
+        carService.delete(1L);
+        System.out.println(carService.update(car));
+        System.out.println(carService.get(2L));
+        System.out.println(carService.getAll());
+        Car updated = carService.get(1L);
+        updated.setModel("qqqw");
+        System.out.println(carService.update(updated));
     }
 }

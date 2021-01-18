@@ -4,7 +4,7 @@ import com.internet.shop.model.Driver;
 import java.util.List;
 import java.util.Optional;
 
-public interface DriverDao {
+public interface DriverDao extends GenericDao<Driver, Long> {
     Driver create(Driver driver);
 
     Optional<Driver> get(Long id);

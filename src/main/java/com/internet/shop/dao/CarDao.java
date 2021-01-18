@@ -4,7 +4,7 @@ import com.internet.shop.model.Car;
 import java.util.List;
 import java.util.Optional;
 
-public interface CarDao {
+public interface CarDao extends GenericDao<Car, Long> {
     Car create(Car car);
 
     Optional<Car> get(Long id);
