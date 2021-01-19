@@ -10,28 +10,28 @@ INSERT INTO `taxi_service`.`manufacturers` (`manufacture_name`, `manufacture_cou
 INSERT INTO `taxi_service`.`manufacturers` (`manufacture_name`, `manufacture_country`) VALUES ('BMW', 'Germany');
 
 CREATE TABLE `cars` (
-                        `car_id` int NOT NULL AUTO_INCREMENT,
+                        `id` int NOT NULL AUTO_INCREMENT,
                         `manufacturer_id` bigint DEFAULT NULL,
-                        `car_model` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+                        `model` varchar(45) COLLATE utf8_bin DEFAULT NULL,
                         `deleted` tinyint NOT NULL DEFAULT '0',
-                        PRIMARY KEY (`car_id`),
+                        PRIMARY KEY (`id`),
                         KEY `manufacturer_id_idx` (`manufacturer_id`),
                         CONSTRAINT `manufacturer_id` FOREIGN KEY (`manufacturer_id`) REFERENCES `manufacturers` (`manufacture_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE `drivers` (
-                           `driver_id` int NOT NULL AUTO_INCREMENT,
-                           `driver_name` varchar(225) COLLATE utf8_bin NOT NULL,
+                           `id` int NOT NULL AUTO_INCREMENT,
+                           `name` varchar(225) COLLATE utf8_bin NOT NULL,
                            `license_number` varchar(225) COLLATE utf8_bin NOT NULL,
                            `deleted` tinyint NOT NULL DEFAULT '0',
-                           PRIMARY KEY (`driver_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+                           PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE `drivers_cars` (
-                                `driver_id` bigint NOT NULL,
-                                `car_id` bigint NOT NULL,
-                                `id` bigint NOT NULL AUTO_INCREMENT,
-                                PRIMARY KEY (`id`),
-                                KEY `driver_id_fk_idx` (`driver_id`),
-                                KEY `car_id_fk_idx` (`car_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+                                `driver_id` int NOT NULL,
+                                `car_id` int NOT NULL,
+                                KEY `car_id_idx` (`car_id`),
+                                KEY `driver_id_idx` (`driver_id`),
+                                CONSTRAINT `car_id` FOREIGN KEY (`car_id`) REFERENCES `cars` (`id`),
+                                CONSTRAINT `driver_id` FOREIGN KEY (`driver_id`) REFERENCES `drivers` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

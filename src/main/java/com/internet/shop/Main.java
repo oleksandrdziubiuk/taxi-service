@@ -38,14 +38,14 @@ public class Main {
         carService.removeDriverFromCar(driverJohn, car);
         carService.delete(1L);
         System.out.println(carService.update(car));
-        System.out.println(carService.get(3L));
+        System.out.println(carService.get(car.getId()));
         System.out.println(carService.getAll());
-        Car updated = carService.get(2L);
+        Car updated = carService.get(car.getId());
         updated.setModel("qqqw");
         System.out.println(carService.update(updated));
         Car carAudi = new Car("Q8", manufacturer);
         carService.create(carAudi);
         carService.addDriverToCar(driverBob, carAudi);
-        System.out.println(carService.get(3L));
+        System.out.println(carService.get(carAudi.getId()));
     }
 }
