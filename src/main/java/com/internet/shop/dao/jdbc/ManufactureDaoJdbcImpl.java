@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Dao
-public class ManufactureJdbc implements ManufactureDao {
+public class ManufactureDaoJdbcImpl implements ManufactureDao {
     @Override
     public Manufacturer create(Manufacturer manufacturer) {
         String query = "INSERT INTO manufacturers"
@@ -58,7 +58,7 @@ public class ManufactureJdbc implements ManufactureDao {
         String query = "SELECT * FROM manufacturers WHERE deleted = false;";
         List<Manufacturer> manufacturerList = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 manufacturerList.add(createManufacturer(resultSet));

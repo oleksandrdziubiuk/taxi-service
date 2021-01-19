@@ -26,6 +26,8 @@ public class Main {
         driverService.create(driverJohn);
         System.out.println(driverService.getAll());
         driverService.delete(1L);
+        Driver driverBob = new Driver("Bob", "445");
+        System.out.println(driverService.create(driverBob));
 
         CarService carService = (CarService) injector.getInstance(CarService.class);
         Car car = new Car("aaaa", manufactureService.get(2L));
@@ -36,10 +38,14 @@ public class Main {
         carService.removeDriverFromCar(driverJohn, car);
         carService.delete(1L);
         System.out.println(carService.update(car));
-        System.out.println(carService.get(2L));
+        System.out.println(carService.get(3L));
         System.out.println(carService.getAll());
-        Car updated = carService.get(1L);
+        Car updated = carService.get(2L);
         updated.setModel("qqqw");
         System.out.println(carService.update(updated));
+        Car carAudi = new Car("Q8", manufacturer);
+        carService.create(carAudi);
+        carService.addDriverToCar(driverBob, carAudi);
+        System.out.println(carService.getAll());
     }
 }

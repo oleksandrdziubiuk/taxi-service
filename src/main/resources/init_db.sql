@@ -10,22 +10,22 @@ INSERT INTO `taxi_service`.`manufacturers` (`manufacture_name`, `manufacture_cou
 INSERT INTO `taxi_service`.`manufacturers` (`manufacture_name`, `manufacture_country`) VALUES ('BMW', 'Germany');
 
 CREATE TABLE `cars` (
-                        `cars_id` int NOT NULL AUTO_INCREMENT,
+                        `car_id` int NOT NULL AUTO_INCREMENT,
                         `manufacturer_id` bigint DEFAULT NULL,
-                        `cars_model` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+                        `car_model` varchar(45) COLLATE utf8_bin DEFAULT NULL,
                         `deleted` tinyint NOT NULL DEFAULT '0',
-                        PRIMARY KEY (`cars_id`),
+                        PRIMARY KEY (`car_id`),
                         KEY `manufacturer_id_idx` (`manufacturer_id`),
                         CONSTRAINT `manufacturer_id` FOREIGN KEY (`manufacturer_id`) REFERENCES `manufacturers` (`manufacture_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE `drivers` (
-                           `drivers_id` int NOT NULL AUTO_INCREMENT,
-                           `drivers_name` varchar(45) COLLATE utf8_bin NOT NULL,
-                           `license_number` varchar(45) COLLATE utf8_bin NOT NULL,
+                           `driver_id` int NOT NULL AUTO_INCREMENT,
+                           `driver_name` varchar(225) COLLATE utf8_bin NOT NULL,
+                           `license_number` varchar(225) COLLATE utf8_bin NOT NULL,
                            `deleted` tinyint NOT NULL DEFAULT '0',
-                           PRIMARY KEY (`drivers_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+                           PRIMARY KEY (`driver_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE `drivers_cars` (
                                 `driver_id` bigint NOT NULL,
@@ -34,4 +34,4 @@ CREATE TABLE `drivers_cars` (
                                 PRIMARY KEY (`id`),
                                 KEY `driver_id_fk_idx` (`driver_id`),
                                 KEY `car_id_fk_idx` (`car_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_bin
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
