@@ -46,6 +46,5 @@ public class Main {
         Car carAudi = new Car("Q8", manufacturer);
         carService.create(carAudi);
         carService.addDriverToCar(driverBob, carAudi);
-        System.out.println(carService.getAll());
     }
 }
