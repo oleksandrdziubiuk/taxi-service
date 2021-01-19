@@ -123,7 +123,6 @@ public class CarDaoJdbcImpl implements CarDao {
             while (resultSet.next()) {
                 allCars.add(createCar(resultSet));
             }
-
         } catch (SQLException e) {
             throw new RuntimeException("Can`t get all data from DB ", e);
         }
@@ -142,8 +141,8 @@ public class CarDaoJdbcImpl implements CarDao {
                 + "LEFT JOIN drivers_cars d_c ON c.car_id = d_c.car_id "
                 + "LEFT JOIN drivers d ON c.car_id = d_c.car_id "
                 + "LEFT JOIN manufacturers m ON c.manufacturer_id = m.manufacture_id "
-                + "WHERE d.driver_id = ? AND d.deleted = FALSE;";
-        List<Car> cars = new ArrayList<>();
+                + "WHERE d.driver_id = ? AND d.deleted = FALSE AND c.deleted = FALSE;";
+        List<Car> cars;
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(getAllByDriverQuery)) {
             statement.setLong(1, id);
@@ -152,7 +151,6 @@ public class CarDaoJdbcImpl implements CarDao {
             while (resultSet.next()) {
                 cars.add(createCar(resultSet));
             }
-
         } catch (SQLException e) {
             throw new DataProcessingException("We can't get data for this driver:"
                     + id, e);
@@ -179,7 +177,7 @@ public class CarDaoJdbcImpl implements CarDao {
             }
             return drivers;
         } catch (SQLException e) {
-            throw new DataProcessingException("We can't get drivers for this car", e);
+            throw new DataProcessingException("Can't get drivers for this car", e);
         }
     }
 
