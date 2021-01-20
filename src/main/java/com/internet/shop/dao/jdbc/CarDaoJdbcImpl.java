@@ -39,10 +39,10 @@ public class CarDaoJdbcImpl implements CarDao {
 
     @Override
     public Optional<Car> get(Long id) {
-        String getQuery = "SELECT c.id, c.model, m.manufacture_id, "
-                + "m.manufacture_name, m.manufacture_country "
+        String getQuery = "SELECT c.id, c.model, m.manufacturer_id, "
+                + "m.manufacturer_name, m.manufacturer_country "
                 + "FROM cars c "
-                + "JOIN manufacturers m ON c.manufacturer_id = m.manufacture_id "
+                + "JOIN manufacturers m ON c.manufacturer_id = m.manufacturer_id "
                 + "WHERE c.id = ? AND c.deleted = FALSE;";
         Car car = null;
         try (Connection connection = ConnectionUtil.getConnection();
@@ -95,10 +95,10 @@ public class CarDaoJdbcImpl implements CarDao {
 
     @Override
     public List<Car> getAll() {
-        String getAllQuery = "SELECT c.id, c.model, m.manufacture_id, "
-                + "m.manufacture_name, m.manufacture_country "
+        String getAllQuery = "SELECT c.id, c.model, m.manufacturer_id, "
+                + "m.manufacturer_name, m.manufacturer_country "
                 + "FROM cars c "
-                + "JOIN manufacturers m ON c.manufacturer_id = m.manufacture_id "
+                + "JOIN manufacturers m ON c.manufacturer_id = m.manufacturer_id "
                 + "WHERE c.deleted = FALSE;";
         List<Car> allCars = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection();
@@ -119,11 +119,11 @@ public class CarDaoJdbcImpl implements CarDao {
     @Override
     public List<Car> getAllByDriver(Long id) {
         String getAllByDriverQuery = "SELECT c.id, c.model, "
-                + "m.manufacture_id, m.manufacture_name, m.manufacture_country "
+                + "m.manufacturer_id, m.manufacturer_name, m.manufacturer_country "
                 + "FROM cars c "
                 + "JOIN drivers_cars d_c ON c.id = d_c.car_id "
                 + "JOIN drivers d ON c.id = d_c.car_id "
-                + "JOIN manufacturers m ON c.manufacturer_id = m.manufacture_id "
+                + "JOIN manufacturers m ON c.manufacturer_id = m.manufacturer_id "
                 + "WHERE d.id = ? AND d.deleted = FALSE AND c.deleted = FALSE;";
         List<Car> cars = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection();
@@ -190,14 +190,14 @@ public class CarDaoJdbcImpl implements CarDao {
 
     private Manufacturer createManufacturer(ResultSet resultSet) {
         try {
-            Long manufacturerId = resultSet.getObject("manufacture_id", Long.class);
-            String name = resultSet.getString("manufacture_name");
-            String country = resultSet.getString("manufacture_country");
+            Long manufacturerId = resultSet.getObject("manufacturer_id", Long.class);
+            String name = resultSet.getString("manufacturer_name");
+            String country = resultSet.getString("manufacturer_country");
             Manufacturer manufacturer = new Manufacturer(name, country);
             manufacturer.setId(manufacturerId);
             return manufacturer;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't parse manufacture from ResultSet", e);
+            throw new DataProcessingException("Can't parse manufacturer from ResultSet", e);
         }
     }
 

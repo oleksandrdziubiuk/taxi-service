@@ -71,11 +71,10 @@ public class DriverDaoJdbcImpl implements DriverDao {
 
     @Override
     public boolean delete(Long id) {
-        String deleteQuery = "UPDATE drivers SET deleted = ?  WHERE id = ?";
+        String deleteQuery = "UPDATE drivers SET deleted = TRUE  WHERE id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
-            statement.setBoolean(1, true);
-            statement.setLong(2, id);
+            statement.setLong(1, id);
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't delete driver id "

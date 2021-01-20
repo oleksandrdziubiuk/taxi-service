@@ -17,26 +17,26 @@ public class Main {
         System.out.println(manufactureService.getAll());
         Manufacturer manufacturer = new Manufacturer("Opel", "Germany");
         manufactureService.create(manufacturer);
-        System.out.println(manufactureService.delete(1L));
-        System.out.println(manufactureService.get(2L));
+        System.out.println(manufactureService.delete(manufacturer.getId()));
+        System.out.println(manufactureService.get(manufacturer.getId()));
         System.out.println(manufactureService.getAll());
 
         DriverService driverService = (DriverService) injector.getInstance(DriverService.class);
         Driver driverJohn = new Driver("John", "323");
         driverService.create(driverJohn);
         System.out.println(driverService.getAll());
-        driverService.delete(1L);
+        driverService.delete(driverJohn.getId());
         Driver driverBob = new Driver("Bob", "445");
         System.out.println(driverService.create(driverBob));
 
         CarService carService = (CarService) injector.getInstance(CarService.class);
-        Car car = new Car("aaaa", manufactureService.get(2L));
+        Car car = new Car("aaaa", manufactureService.get(manufacturer.getId()));
         carService.create(car);
-        carService.addDriverToCar(driverService.get(5L), car);
+        carService.addDriverToCar(driverService.get(driverBob.getId()), car);
         System.out.println(carService.getAll());
-        System.out.println(carService.getAllByDriver(1L));
+        System.out.println(carService.getAllByDriver(driverBob.getId()));
         carService.removeDriverFromCar(driverJohn, car);
-        carService.delete(1L);
+        carService.delete(car.getId());
         System.out.println(carService.update(car));
         System.out.println(carService.get(car.getId()));
         System.out.println(carService.getAll());
