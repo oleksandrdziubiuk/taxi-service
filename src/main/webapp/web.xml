@@ -57,6 +57,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteDriver</servlet-name>
-        <url-pattern>/drivers/all</url-pattern>
+        <url-pattern>/drivers/delete</url-pattern>
     </servlet-mapping>
 </web-app>
