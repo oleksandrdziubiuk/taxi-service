@@ -13,7 +13,7 @@
         <th>licenseNumber</th>
         <th>delete</th>
     </tr>
-    <c:forEach var="driver" items="${driver}">
+    <c:forEach var="driver" items="${drivers}">
         <tr>
             <td>
                 <c:out value="${driver.id}"/>
