@@ -5,10 +5,58 @@
          version="3.1">
     <servlet>
         <servlet-name>index</servlet-name>
-        <servlet-class>com.internet.shop.controllers.IndexController</servlet-class>
+        <servlet-class>com.internet.shop.controller.IndexController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
-        <url-pattern>/index</url-pattern>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>allDrivers</servlet-name>
+        <servlet-class>com.internet.shop.controller.driver.GetAllDriversController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allDrivers</servlet-name>
+        <url-pattern>/drivers</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>createDriver</servlet-name>
+        <servlet-class>com.internet.shop.controller.driver.CreateDriverController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createDriver</servlet-name>
+        <url-pattern>/drivers/create</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>createManufacturer</servlet-name>
+        <servlet-class>com.internet.shop.controller.manufacturer.CreateManufacturerController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createManufacturer</servlet-name>
+        <url-pattern>/manufacturers/create</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>createCar</servlet-name>
+        <servlet-class>com.internet.shop.controller.car.CreateCarController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createCar</servlet-name>
+        <url-pattern>/cars/create</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddDriverToCar</servlet-name>
+        <servlet-class>com.internet.shop.controller.car.AddDriverToCarController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddDriverToCar</servlet-name>
+        <url-pattern>/cars/drivers/add</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteDriver</servlet-name>
+        <servlet-class>com.internet.shop.controller.driver.DeleteDriverController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteDriver</servlet-name>
+        <url-pattern>/drivers/delete</url-pattern>
     </servlet-mapping>
 </web-app>

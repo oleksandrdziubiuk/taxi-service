@@ -1,4 +1,4 @@
-package com.internet.shop.controllers;
+package com.internet.shop.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
