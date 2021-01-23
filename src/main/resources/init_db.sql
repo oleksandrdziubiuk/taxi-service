@@ -40,3 +40,6 @@ CREATE TABLE `drivers_cars` (
 ALTER TABLE `taxi_service`.`drivers`
     ADD COLUMN `login` VARCHAR(225) NOT NULL AFTER `deleted`,
     ADD COLUMN `password` VARCHAR(225) NOT NULL AFTER `login`;
+
+ALTER TABLE `taxi_service`.`drivers`
+    ADD UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE;
