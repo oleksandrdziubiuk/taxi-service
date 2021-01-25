@@ -1,7 +1,8 @@
 package com.internet.shop.web.filter;
 
-import com.internet.shop.lib.Injector;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -13,10 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AuthenticationFilter implements Filter {
     private static final String DRIVER_ID = "id";
-    private static final Injector injector = Injector.getInstance("com.internet.shop");
+    private static final Set<String> user = new HashSet<>();
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+        user.add("/drivers/login");
+        user.add("/drivers/create");
     }
 
     @Override
@@ -25,7 +28,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         String url = req.getServletPath();
-        if (url.equals("/drivers/login") || url.equals("/drivers/create")) {
+        if (user.contains(url)) {
             chain.doFilter(req, resp);
             return;
         }
