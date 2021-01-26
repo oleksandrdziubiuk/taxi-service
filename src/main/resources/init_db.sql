@@ -36,3 +36,10 @@ CREATE TABLE `drivers_cars` (
                                 CONSTRAINT `car_id` FOREIGN KEY (`car_id`) REFERENCES `cars` (`id`),
                                 CONSTRAINT `driver_id` FOREIGN KEY (`driver_id`) REFERENCES `drivers` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+ALTER TABLE `taxi_service`.`drivers`
+    ADD COLUMN `login` VARCHAR(225) NOT NULL AFTER `deleted`,
+    ADD COLUMN `password` VARCHAR(225) NOT NULL AFTER `login`;
+
+ALTER TABLE `taxi_service`.`drivers`
+    ADD UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE;
